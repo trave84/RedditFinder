@@ -28,13 +28,20 @@ searchForm.addEventListener("submit", e => {
     console.log("Reddit API results: ", results);
 
     results.forEach(post => {
+      // TEST IF post has image URL at all (API console results)
+      const img = post.preview
+        ? post.preview.images[0].source.url
+        : "http://kidcrusher.com/wp-content/uploads/2017/01/reddit-squarelogo-1428963840284.png";
+
       output += `
           <div class="card">
-            <img class="card-img-top" src="..." alt="Card image cap">
+            <img class="card-img-top" src="${img}" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title">${post.title}</h5>
               <p class="card-text">${truncateText(post.selftext, 100)}</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+              <a href=${
+                post.url
+              } target="_blank" class="btn btn-primary">Read more...</a>
             </div>
           </div>
         `;
