@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <title>Find Reddits by Tag</title>
+  </head>
+  <body>
+    <nav class="navbar-dark bg-primary mb-3">
+      <div class="container">
+        <span class="navbar-brand">RedditFinder</span>
+      </div>
+    </nav>
+    <div id="search-container" class="container">
+      <div id="search" class="card card-body bg-light mb-2">
+        <h4>Reddit</h4>
+        <form  id="search-form">
+          <div class="form-group">
+            <input type="text" id="search-input" class="form-control mb-3" placeholder="Type in Tagname to Search" >
+          </div>
+          <div class="form-check form-check-inline">
+            Sort by:
+            <input class="form-check-input ml-2" type="radio" name="sortby" value="relevance" checked>
+            <label class="form-check-label">Relevance</label>
+            <input class="form-check-input ml-2" type="radio" name="sortby" value="new">
+            <label class="form-check-label">Latest</label>
+          </div>
+          <h5 class="mt-2">Limit:</h5>
+          <div class="form-group">
+            <select name="limir" id="limit" class="form-control">
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="25" selected>25</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-dark btn-block mt-4">Search</button>
+        </form>
+        <div id="results"></div>
+      </div>
+    </div>
+
+    <script src="./index.js" ></script>
+  </body>
+</html>
