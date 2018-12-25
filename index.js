@@ -1,3 +1,5 @@
+import reddit from "./redditApi";
+
 // DOM vars
 const searchForm = document.getElementById("search-form");
 const searchInput = document.getElementById("search-input");
@@ -16,6 +18,30 @@ searchForm.addEventListener("submit", e => {
     showMessage("Please type something in to search", "alert-danger");
   }
 
+  // Clear Input Field
+  searchInput.value = "";
+
+  // Search Reddit API
+  reddit.search(searchTerm, searchLimit, sortBy).then(results => {
+    let output = '<div class="card-columns">';
+    results.forEach(post => {
+      output += `
+          <div class="card">
+            <img class="card-img-top" src="..." alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        `;
+    });
+    output += "<div>";
+
+    // RENDER 'output' in HTML
+    document.getElementById("results").innerHTML = output;
+  });
+
   e.preventDefault();
 });
 
@@ -32,4 +58,7 @@ function showMessage(msg, className) {
   const searchCard = document.getElementById("search-card");
   //RENDER the msg text
   searchContainer.insertBefore(div, searchCard);
+
+  // Remove  alert msg  in time
+  setTimeout(() => document.querySelector(".alert").remove(), 3000);
 }
